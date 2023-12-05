@@ -16,9 +16,10 @@ import { Location } from '@angular/common';
   styleUrls: ['./order.admin.component.scss']
 })
 export class OrderAdminComponent implements OnInit{  
+  
   orders: OrderResponse[] = [];
-  currentPage: number = 0;
-  itemsPerPage: number = 12;
+  currentPage: number = 1;
+  itemsPerPage: number = 5;
   pages: number[] = [];
   totalPages:number = 0;
   keyword:string = "";
@@ -35,6 +36,13 @@ export class OrderAdminComponent implements OnInit{
   ngOnInit(): void {
     debugger
     this.getAllOrders(this.keyword, this.currentPage, this.itemsPerPage);
+  }
+  searchOrders() {
+    this.currentPage = 1;
+    this.itemsPerPage = 5;
+    //Mediocre Iron Wallet
+    debugger
+    this.getAllOrders(this.keyword.trim(), this.currentPage, this.itemsPerPage);
   }
   getAllOrders(keyword: string, page: number, limit: number) {
     debugger

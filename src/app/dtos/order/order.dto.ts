@@ -11,7 +11,7 @@ import { CartItemDTO } from './cart.item.dto';
 export class OrderDTO {
   user_id: number;
 
-  fullname: string;
+  full_name: string;
 
   email: string;
 
@@ -37,7 +37,7 @@ export class OrderDTO {
 
   constructor(data: any) {
     this.user_id = data.user_id;
-    this.fullname = data.fullname;
+    this.full_name = data.full_name;
     this.email = data.email;
     this.status = data.status;
     this.phone_number = data.phone_number;

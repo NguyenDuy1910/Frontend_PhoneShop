@@ -29,7 +29,8 @@ export class UserService {
     return this.http.post(this.apiRegister, registerDTO, this.apiConfig);
   }
 
-  login(loginDTO: LoginDTO): Observable<any> {    
+  login(loginDTO: LoginDTO): Observable<any> { 
+    debugger   
     return this.http.post(this.apiLogin, loginDTO, this.apiConfig);
   }
   getUserDetail(token: string) {
@@ -67,6 +68,7 @@ export class UserService {
   }
   getUserResponseFromLocalStorage():UserResponse | null {
     try {
+      debugger
       // Retrieve the JSON string from local storage using the key
       const userResponseJSON = localStorage.getItem('user'); 
       if(userResponseJSON == null || userResponseJSON == undefined) {

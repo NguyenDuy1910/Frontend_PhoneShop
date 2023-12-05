@@ -9,12 +9,12 @@ import { OrderDTO } from '../../dtos/order/order.dto';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Order } from 'src/app/models/order';
-
 @Component({
   selector: 'app-order',
   templateUrl: './order.component.html',
   styleUrls: ['./order.component.scss']
 })
+
 export class OrderComponent implements OnInit{
   orderForm: FormGroup; // Đối tượng FormGroup để quản lý dữ liệu của form
   cartItems: { product: Product, quantity: number }[] = [];
@@ -22,7 +22,7 @@ export class OrderComponent implements OnInit{
   totalAmount: number = 0; // Tổng tiền
   orderData: OrderDTO = {
     user_id: 0, // Thay bằng user_id thích hợp
-    fullname: '', // Khởi tạo rỗng, sẽ được điền từ form
+    full_name: '', // Khởi tạo rỗng, sẽ được điền từ form
     email: '', // Khởi tạo rỗng, sẽ được điền từ form    
     phone_number: '', // Khởi tạo rỗng, sẽ được điền từ form
     address: '', // Khởi tạo rỗng, sẽ được điền từ form
@@ -43,10 +43,10 @@ export class OrderComponent implements OnInit{
     private formBuilder: FormBuilder,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-  ) {
+      ) {
     // Tạo FormGroup và các FormControl tương ứng
     this.orderForm = this.formBuilder.group({
-      fullname: ['', Validators.required], // fullname là FormControl bắt buộc      
+      full_name: ['', Validators.required], // fullname là FormControl bắt buộc      
       email: ['', [Validators.email]], // Sử dụng Validators.email cho kiểm tra định dạng email
       phone_number: ['', [Validators.required, Validators.minLength(6)]], // phone_number bắt buộc và ít nhất 6 ký tự
       address: ['', [Validators.required, Validators.minLength(5)]], // address bắt buộc và ít nhất 5 ký tự
@@ -58,7 +58,7 @@ export class OrderComponent implements OnInit{
   
   ngOnInit(): void {  
     debugger
-    //this.cartService.clearCart();
+    // this.cartService.clearCart();
     this.orderData.user_id = this.tokenService.getUserId();    
     // Lấy danh sách sản phẩm từ giỏ hàng
     debugger
@@ -121,41 +121,53 @@ export class OrderComponent implements OnInit{
       }));
       this.orderData.total_money =  this.totalAmount;
       // Dữ liệu hợp lệ, bạn có thể gửi đơn hàng đi
-      this.orderService.placeOrder(this.orderData).subscribe({
-        next: (response:Order) => {
-          debugger;          
-          alert('Đặt hàng thành công');
-          this.cartService.clearCart();
-          this.router.navigate(['/']);
-        },
-        complete: () => {
-          debugger;
-          this.calculateTotal();
-        },
-        error: (error: any) => {
-          debugger;
-          alert(`Lỗi khi đặt hàng: ${error}`);
-        },
-      });
-    } else {
-      // Hiển thị thông báo lỗi hoặc xử lý khác
-      alert('Dữ liệu không hợp lệ. Vui lòng kiểm tra lại.');
-    }        
-  }
-    
-    
-  
-  // Hàm tính tổng tiền
-  calculateTotal(): void {
-      this.totalAmount = this.cartItems.reduce(
-          (total, item) => total + item.product.price * item.quantity,
-          0
-      );
-  }
+        this.orderService.placeOrder(this.orderData).subscribe({
+          next: (response:Order) => {
+            const orderId = response.id; // Lấy orderID từ response
+            this.tokenService.setOrderId(orderId); // Lưu orderId vào token
+            // Lưu trữ tạm thời orderId
 
-  // Hàm xử lý việc áp dụng mã giảm giá
-  applyCoupon(): void {
-      // Viết mã xử lý áp dụng mã giảm giá ở đây
-      // Cập nhật giá trị totalAmount dựa trên mã giảm giá nếu áp dụng
+            debugger;
+            // const emailContent = this.createEmailContent(this.orderData, this.cartItems); 
+            alert('Đặt hàng thành công');
+            // this.orderService.sendEmail(emailContent);
+
+            this.cartService.clearCart();
+            this.router.navigate(['/']);
+          },
+          complete: () => {
+
+
+            debugger;
+            this.calculateTotal();
+          },
+          error: (error: any) => {
+            debugger;
+            alert(`Lỗi khi đặt hàng: ${error}`);
+          },
+        });
+      } else {
+        // Hiển thị thông báo lỗi hoặc xử lý khác
+        alert('Dữ liệu không hợp lệ. Vui lòng kiểm tra lại.');
+      }        
+    }
+      
+      
+    
+    // Hàm tính tổng tiền
+    calculateTotal(): void {
+        this.totalAmount = this.cartItems.reduce(
+            (total, item) => total + item.product.price * item.quantity,
+            0
+        );
+    }
+    
+
+    // Hàm xử lý việc áp dụng mã giảm giá
+    applyCoupon(): void {
+        // Viết mã xử lý áp dụng mã giảm giá ở đây
+        // Cập nhật giá trị totalAmount dựa trên mã giảm giá nếu áp dụng
+    }
+  
+   
   }
-}

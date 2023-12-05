@@ -23,6 +23,7 @@ export class HeaderComponent implements OnInit{
     
    }
   ngOnInit() {
+    debugger
     this.userResponse = this.userService.getUserResponseFromLocalStorage();    
   }  
 
@@ -41,7 +42,15 @@ export class HeaderComponent implements OnInit{
       this.tokenService.removeToken();
       this.userResponse = this.userService.getUserResponseFromLocalStorage();    
     }
-    this.isPopoverOpen = false; // Close the popover after clicking an item    
+    else
+    {
+      debugger
+
+      this.router.navigate(['orders/user', this.userResponse?.id]);
+    
+    }
+  
+    // this.isPopoverOpen = false; // Close the popover after clicking an item    
   }
 
   

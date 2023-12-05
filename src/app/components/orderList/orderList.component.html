@@ -1,0 +1,57 @@
+<div class="container-fluid">
+  <h1>Thông tin đơn hàng đã đặt</h1>
+  <div class="row mb-3">
+   
+   
+  </div>
+<!-- <h2>Orders</h2> -->
+<table class="table">
+  <thead>
+    <tr>
+      <!-- <th>ID</th>
+      <th>User ID</th> -->
+      <th>Người Nhận</th>
+      <th>Email</th>
+      <th>Số điện thoại</th>
+      <th>Địa chỉ giao hàng</th>
+      <th>Ghi Chú</th>
+      <th>Ngày Đặt Hàng</th>
+      <th>Trạng thái đơn hàng </th>
+      <th>Tổng tiền</th>
+      <!-- <th>Action</th> -->
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let order of orders">
+      <!-- <td>{{ order.id }}</td>
+      <td>{{ order.user_id }}</td> -->
+      <td>{{ order.full_name }}</td>
+      <td>{{ order.email }}</td>
+      <td>{{ order.phone_number }}</td>
+      <td>{{ order.address }}</td>
+      <td>{{ order.note }}</td>
+      <td>{{ order.order_date | date }}</td>
+      <td>{{ order.status }}</td>
+      <td>{{ order.total_money }}</td>
+      <td>
+        <!-- <div class="action-buttons">
+          <button (click)="viewDetails(order.id)" class="btn btn-primary">View Details</button>
+          <button (click)="deleteOrder(order.id)" class="btn btn-danger">Delete</button>
+        </div>
+      </td> -->
+      <td>
+        <div style="display: flex; gap: 10px;">
+        <button 
+          (click)="viewDetails(order.id)"
+              class="btn btn-primary">
+              View Details
+        </button>
+        <button class="btn btn-danger" 
+          (click)="deleteOrder(order.id)"
+          >Delete</button>                
+        </div>
+      </td>            
+      
+    </tr>
+  </tbody>
+</table>

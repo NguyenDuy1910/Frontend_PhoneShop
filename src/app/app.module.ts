@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
+import { OrderListComponent } from './components/orderList/orderList.component';
+
 import { FooterComponent } from './components/footer/footer.component';
 import { DetailProductComponent } from './components/detail-product/detail-product.component';
 import { OrderComponent } from './components/order/order.component';
@@ -16,11 +18,13 @@ import { AppComponent } from './app/app.component';
 import { UserProfileComponent } from './components/user-profile/user.profile.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommonModule } from '@angular/common';
-//import { AdminComponent } from './components/admin/admin.component';
-//import { OrderAdminComponent } from './components/admin/order/order.admin.component';
+import { AdminComponent } from './components/admin/admin.component';
+import { OrderAdminComponent } from './components/admin/order/order.admin.component';
 import { ProductAdminComponent } from './components/admin/product/product.admin.component';
 import { CategoryAdminComponent } from './components/admin/category/category.admin.component';
-//import { DetailOrderAdminComponent } from './components/admin/detail-order/detail.order.admin.component';
+import { DetailOrderAdminComponent } from './components/admin/detail-order/detail.order.admin.component';
+import {AdminRoutingModule} from './components/admin/admin-routing.module'
+
 import { AdminModule } from './components/admin/admin.module';
 import { 
   HttpClientModule, 
@@ -40,12 +44,13 @@ import {
     RegisterComponent, 
     UserProfileComponent,
     AppComponent,
+    OrderListComponent,
     //admin    
-    //AdminComponent,
-    //OrderAdminComponent,
-    //ProductAdminComponent,
-    //CategoryAdminComponent,
-    //DetailOrderAdminComponent,
+    // AdminComponent
+    // OrderAdminComponent,
+    // ProductAdminComponent,
+    // CategoryAdminComponent,
+    // DetailOrderAdminComponent
   ],
   imports: [
     CommonModule,
@@ -56,6 +61,9 @@ import {
     AppRoutingModule,    
     NgbModule,        
     AdminModule,
+    // AdminRoutingModule,
+
+
   ],
   providers: [
     {
@@ -67,10 +75,10 @@ import {
   bootstrap: [
     AppComponent
     // HomeComponent,
-    //DetailProductComponent,
+    // DetailProductComponent,
     // OrderComponent,
-    //OrderDetailComponent,
-    //LoginComponent,
+    // OrderDetailComponent,
+    // LoginComponent,
     // RegisterComponent
   ]
 })

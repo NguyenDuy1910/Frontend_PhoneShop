@@ -27,8 +27,8 @@ export class LoginComponent implements OnInit{
   password: string = '11223344';
 
   */
-  phoneNumber: string = '33445566';
-  password: string = '123456789';
+  phoneNumber: string = '0793584279';
+  password: string = '19102003';
   showPassword: boolean = false;
 
   roles: Role[] = []; // Mảng roles
@@ -80,7 +80,8 @@ export class LoginComponent implements OnInit{
     const loginDTO: LoginDTO = {
       phone_number: this.phoneNumber,
       password: this.password,
-      role_id: this.selectedRole?.id ?? 1
+      // role_id:0
+      // role_id: this.selectedRole?.id ?? 1
     };
     this.userService.login(loginDTO).subscribe({
       next: (response: LoginResponse) => {
@@ -93,13 +94,14 @@ export class LoginComponent implements OnInit{
             next: (response: any) => {
               debugger
               this.userResponse = {
-                ...response,
-                date_of_birth: new Date(response.date_of_birth),
+                ...response
+                // dateOfBirth: new Date(response.dateOfBirth),
               };    
               this.userService.saveUserResponseToLocalStorage(this.userResponse); 
-              if(this.userResponse?.role.name == 'admin') {
+              debugger
+              if(this.userResponse?.role.name == 'Admin') {
                 this.router.navigate(['/admin']);    
-              } else if(this.userResponse?.role.name == 'user') {
+              } else if(this.userResponse?.role.name == 'User') {
                 this.router.navigate(['/']);                      
               }
               

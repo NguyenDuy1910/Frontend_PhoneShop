@@ -15,9 +15,9 @@ import { TokenService } from 'src/app/services/token.service';
 export class HomeComponent implements OnInit {
   products: Product[] = [];
   categories: Category[] = []; // Dữ liệu động từ categoryService
-  selectedCategoryId: number  = 1; // Giá trị category được chọn
+  selectedCategoryId: number  = 0; // Giá trị category được chọn
   currentPage: number = 1;
-  itemsPerPage: number = 4;
+  itemsPerPage: number = 9;
   pages: number[] = [];
   totalPages:number = 0;
   visiblePages: number[] = [];

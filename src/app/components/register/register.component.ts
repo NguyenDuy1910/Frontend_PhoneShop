@@ -20,6 +20,7 @@ export class RegisterComponent {
   dateOfBirth: Date;
   showPassword: boolean = false;
 
+
   constructor(private router: Router, private userService: UserService){
     debugger
     this.phoneNumber = '';
@@ -30,6 +31,7 @@ export class RegisterComponent {
     this.isAccepted = true;
     this.dateOfBirth = new Date();
     this.dateOfBirth.setFullYear(this.dateOfBirth.getFullYear() - 18);
+   
     //inject
 
   }
@@ -38,6 +40,7 @@ export class RegisterComponent {
     //how to validate ? phone must be at least 6 characters
   }
   register() {
+
     const message = `phone: ${this.phoneNumber}`+
                     `password: ${this.password}`+
                     `retypePassword: ${this.retypePassword}`+
@@ -45,7 +48,7 @@ export class RegisterComponent {
                     `fullName: ${this.fullName}`+
                     `isAccepted: ${this.isAccepted}`+
                     `dateOfBirth: ${this.dateOfBirth}`;
-    //alert(message);
+    alert(message);
     debugger
     
     const registerDTO:RegisterDTO = {
@@ -57,7 +60,7 @@ export class RegisterComponent {
         "date_of_birth": this.dateOfBirth,
         "facebook_account_id": 0,
         "google_account_id": 0,
-        "role_id": 0
+        "role_id": 0,
     }
     this.userService.register(registerDTO).subscribe({
         next: (response: any) => {

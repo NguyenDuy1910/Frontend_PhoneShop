@@ -4,14 +4,14 @@
     <div class="col-md-3 mx-auto">
         <h2 class="product-header">Thông tin người dùng</h2>
             <div class="mb-3">
-                <label for="fullname" class="form-label">Họ và tên</label>
+                <label for="full_name" class="form-label">Họ và tên</label>
                 <input type="text" 
-                    formControlName="fullname" 
+                    formControlName="full_name" 
                     class="form-control" 
-                    id="fullname" 
-                    [class.is-invalid]="userProfileForm.get('fullname')!.invalid && userProfileForm.get('fullname')!.touched">
+                    id="full_name" 
+                    [class.is-invalid]="userProfileForm.get('full_name')!.invalid && userProfileForm.get('fullname')!.touched">
                 <div 
-                    *ngIf="userProfileForm.get('fullname')!.invalid && userProfileForm.get('fullname')!.touched" 
+                    *ngIf="userProfileForm.get('full_name')!.invalid && userProfileForm.get('full_name')!.touched" 
                     class="invalid-feedback">
                     Họ và tên là trường bắt buộc.
                 </div>

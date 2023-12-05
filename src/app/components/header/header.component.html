@@ -43,11 +43,12 @@
                             [placement]="'bottom'"
                           >
                             <a
-                              class="nav-link"                              
+                              class="nav-link"                            
                               [ngbPopover]="popoverContent"
                               (click)="togglePopover($event)"
                             >
-                              {{ userResponse.fullname }}
+                              {{ userResponse.fullName }}
+                              
                             </a>
                             <ng-template #popoverContent>
                               <div class="popover-list">

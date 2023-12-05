@@ -31,7 +31,7 @@ export class RegisterDTO {
     google_account_id: number = 0;
     role_id: number = 1;
     constructor(data: any) {
-        this.full_name = data.fullname;
+        this.full_name = data.full_name;
         this.phone_number = data.phone_number;
         this.address = data.address;
         this.password = data.password;

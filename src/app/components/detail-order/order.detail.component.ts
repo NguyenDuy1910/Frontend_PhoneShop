@@ -16,9 +16,9 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class OrderDetailComponent implements OnInit {  
   orderResponse: OrderResponse = {
-    id: 0, // Hoặc bất kỳ giá trị số nào bạn muốn
+    id: 4, // Hoặc bất kỳ giá trị số nào bạn muốn
     user_id: 0,
-    fullname: '',
+    full_name: '',
     phone_number: '',
     email: '',
     address: '',
@@ -43,13 +43,13 @@ export class OrderDetailComponent implements OnInit {
   
   getOrderDetails(): void {
     debugger
-    const orderId = Number(this.route.snapshot.paramMap.get('orderId'));
+    const orderId = Number(this.route.snapshot.paramMap.get('id'));
     this.orderService.getOrderById(orderId).subscribe({
       next: (response: any) => {        
         debugger;       
         this.orderResponse.id = response.id;
         this.orderResponse.user_id = response.user_id;
-        this.orderResponse.fullname = response.fullname;
+        this.orderResponse.full_name = response.full_name;
         this.orderResponse.email = response.email;
         this.orderResponse.phone_number = response.phone_number;
         this.orderResponse.address = response.address; 

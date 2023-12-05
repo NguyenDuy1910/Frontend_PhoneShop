@@ -6,6 +6,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Product } from '../../models/product';
 import { ProductImage } from 'src/app/models/product.image';
 import { environment } from 'src/environments/environment';
+import { ProductResponse } from 'src/app/responses/product/product.response';
 
 @Component({
   selector: 'app-detail-product',
@@ -14,7 +15,7 @@ import { environment } from 'src/environments/environment';
 })
 
 export class DetailProductComponent implements OnInit {
-  product?: Product;
+  product?: ProductResponse;
   productId: number = 0;
   currentImageIndex: number = 0;
   quantity: number = 1;

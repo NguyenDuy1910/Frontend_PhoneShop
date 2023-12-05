@@ -30,7 +30,7 @@ export class UserProfileComponent implements OnInit {
     private tokenService: TokenService,
   ){        
     this.userProfileForm = this.formBuilder.group({
-      fullname: [''],     
+      full_name: [''],     
       address: ['', [Validators.minLength(3)]],       
       password: ['', [Validators.minLength(3)]], 
       retype_password: ['', [Validators.minLength(3)]], 
@@ -48,12 +48,12 @@ export class UserProfileComponent implements OnInit {
         debugger
         this.userResponse = {
           ...response,
-          date_of_birth: new Date(response.date_of_birth),
+          date_of_birth: new Date(response.dateOfBirth),
         };    
         this.userProfileForm.patchValue({
-          fullname: this.userResponse?.fullname ?? '',
+          full_name: this.userResponse?.fullName ?? '',
           address: this.userResponse?.address ?? '',
-          date_of_birth: this.userResponse?.date_of_birth.toISOString().substring(0, 10),
+          date_of_birth: this.userResponse?.dateOfBirth.toISOString().substring(0, 10),
         });        
         this.userService.saveUserResponseToLocalStorage(this.userResponse);         
       },
@@ -81,7 +81,7 @@ export class UserProfileComponent implements OnInit {
     debugger
     if (this.userProfileForm.valid) {
       const updateUserDTO: UpdateUserDTO = {
-        fullname: this.userProfileForm.get('fullname')?.value,
+        full_name: this.userProfileForm.get('full_name')?.value,
         address: this.userProfileForm.get('address')?.value,
         password: this.userProfileForm.get('password')?.value,
         retype_password: this.userProfileForm.get('retype_password')?.value,

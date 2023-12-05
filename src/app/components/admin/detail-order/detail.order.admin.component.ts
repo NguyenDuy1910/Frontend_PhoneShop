@@ -22,7 +22,7 @@ export class DetailOrderAdminComponent implements OnInit{
   orderResponse: OrderResponse = {
     id: 0, // Hoặc bất kỳ giá trị số nào bạn muốn
     user_id: 0,
-    fullname: '',
+    full_name: '',
     phone_number: '',
     email: '',
     address: '',
@@ -55,7 +55,7 @@ export class DetailOrderAdminComponent implements OnInit{
         debugger;       
         this.orderResponse.id = response.id;
         this.orderResponse.user_id = response.user_id;
-        this.orderResponse.fullname = response.fullname;
+        this.orderResponse.full_name = response.full_name;
         this.orderResponse.email = response.email;
         this.orderResponse.phone_number = response.phone_number;
         this.orderResponse.address = response.address; 

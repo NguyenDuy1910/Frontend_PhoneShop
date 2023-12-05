@@ -23,13 +23,26 @@ export class OrderService {
     // Gửi yêu cầu đặt hàng
     return this.http.post(this.apiUrl, orderData);
   }
+  // sendEmail(emailContent:string):Observable<any>
+  // {
+  //   const url = `${environment.apiBaseUrl}/sendmail`;
+
+  //   return this.http.post(url, emailContent);
+
+  // }
+
   getOrderById(orderId: number): Observable<any> {
     const url = `${environment.apiBaseUrl}/orders/${orderId}`;
     return this.http.get(url);
   }
+  getOrdersByUserId(userId: number) {
+    const url = `${environment.apiBaseUrl}/orders/user/${userId}`;
+    return this.http.get<any[]>(url);
+  }
   getAllOrders(keyword:string,
     page: number, limit: number
   ): Observable<OrderResponse[]> {
+    debugger
       const params = new HttpParams()
       .set('keyword', keyword)      
       .set('page', page.toString())
@@ -40,7 +53,7 @@ export class OrderService {
     const url = `${environment.apiBaseUrl}/orders/${orderId}`;
     return this.http.put(url, orderData);
   }
-  deleteOrder(orderId: number): Observable<any> {
+    deleteOrder(orderId: number): Observable<any> {
     const url = `${environment.apiBaseUrl}/orders/${orderId}`;
     return this.http.delete(url, { responseType: 'text' });
   }

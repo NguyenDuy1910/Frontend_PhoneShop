@@ -7,8 +7,9 @@ import { Product } from '../models/product';
 
 export class CartService {
   private cart: Map<number, number> = new Map(); // Dùng Map để lưu trữ giỏ hàng, key là id sản phẩm, value là số lượng
-
   constructor() {
+    debugger
+
     // Lấy dữ liệu giỏ hàng từ localStorage khi khởi tạo service    
     const storedCart = localStorage.getItem('cart');
     if (storedCart) {
